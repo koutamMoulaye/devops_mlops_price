@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/mlkou/Desktop/devopsMops/src/training/mlruns/972736457168744898/a89d7822602a49ccbbd355a061b575a0/artifacts
+end_time: 1750251258012
+entry_point_name: ''
+experiment_id: '972736457168744898'
+lifecycle_stage: active
+run_id: a89d7822602a49ccbbd355a061b575a0
+run_name: flawless-stag-810
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750251257882
+status: 4
+tags: []
+user_id: mlkou

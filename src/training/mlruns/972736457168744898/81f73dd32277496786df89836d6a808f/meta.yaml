@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/mlkou/Desktop/devopsMops/src/training/mlruns/972736457168744898/81f73dd32277496786df89836d6a808f/artifacts
+end_time: 1750251964176
+entry_point_name: ''
+experiment_id: '972736457168744898'
+lifecycle_stage: active
+run_id: 81f73dd32277496786df89836d6a808f
+run_name: sassy-hen-564
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750251959068
+status: 3
+tags: []
+user_id: mlkou

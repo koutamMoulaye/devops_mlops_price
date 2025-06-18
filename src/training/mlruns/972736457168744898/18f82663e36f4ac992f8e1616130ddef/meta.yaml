@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/mlkou/Desktop/devopsMops/src/training/mlruns/972736457168744898/18f82663e36f4ac992f8e1616130ddef/artifacts
+end_time: 1750256960789
+entry_point_name: ''
+experiment_id: '972736457168744898'
+lifecycle_stage: active
+run_id: 18f82663e36f4ac992f8e1616130ddef
+run_name: nervous-shrike-840
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750256960542
+status: 4
+tags: []
+user_id: mlkou

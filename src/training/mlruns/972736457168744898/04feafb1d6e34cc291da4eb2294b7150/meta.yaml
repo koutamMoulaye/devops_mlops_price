@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/mlkou/Desktop/devopsMops/src/training/mlruns/972736457168744898/04feafb1d6e34cc291da4eb2294b7150/artifacts
+end_time: 1750251885324
+entry_point_name: ''
+experiment_id: '972736457168744898'
+lifecycle_stage: active
+run_id: 04feafb1d6e34cc291da4eb2294b7150
+run_name: painted-bee-518
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750251885247
+status: 4
+tags: []
+user_id: mlkou

@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/mlkou/Desktop/devopsMops/src/training/mlruns/972736457168744898/models/m-cec55e9c539d481da76b125538c0ff01/artifacts
+creation_timestamp: 1750257157638
+experiment_id: '972736457168744898'
+last_updated_timestamp: 1750257162352
+model_id: m-cec55e9c539d481da76b125538c0ff01
+model_type: null
+name: model
+source_run_id: 1bc9de675e51433faa228489d4be0658
+status: 2
+status_message: null

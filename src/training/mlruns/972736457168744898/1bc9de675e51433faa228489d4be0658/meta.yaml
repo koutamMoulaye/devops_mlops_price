@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/mlkou/Desktop/devopsMops/src/training/mlruns/972736457168744898/1bc9de675e51433faa228489d4be0658/artifacts
+end_time: 1750257162430
+entry_point_name: ''
+experiment_id: '972736457168744898'
+lifecycle_stage: active
+run_id: 1bc9de675e51433faa228489d4be0658
+run_name: valuable-steed-54
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750257157396
+status: 3
+tags: []
+user_id: mlkou

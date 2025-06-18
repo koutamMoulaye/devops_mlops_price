@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/mlkou/Desktop/devopsMops/src/training/mlruns/972736457168744898/5e9c1380e1bc4b12b71e547afe543a9b/artifacts
+end_time: 1750251708307
+entry_point_name: ''
+experiment_id: '972736457168744898'
+lifecycle_stage: active
+run_id: 5e9c1380e1bc4b12b71e547afe543a9b
+run_name: inquisitive-wasp-790
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750251708013
+status: 4
+tags: []
+user_id: mlkou
