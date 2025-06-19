@@ -1,0 +1,39 @@
+- name: Setup ML Training instance
+  hosts: training
+  become: true
+  tasks:
+    - name: Update APT and install dependencies
+      apt:
+        update_cache: yes
+        name:
+          - python3-pip
+          - git
+        state: present
+
+    - name: Clone project repository
+      git:
+        repo: "https://github.com/koutamMoulaye/devops_mlops_price"
+        dest: /home/ubuntu/mlops-devops-prix
+        version: main
+
+    - name: Install Python requirements (handle system packages correctly)
+      command: python3 -m pip install --break-system-packages --no-deps --ignore-installed -r requirements.txt
+      args:
+        chdir: /home/ubuntu/mlops-devops-prix
+
+    - name: Ensure pydantic is installed
+      command: python3 -m pip install --break-system-packages pydantic
+
+    - name: Ensure opentelemetry is installed
+      command: python3 -m pip install --break-system-packages opentelemetry-sdk opentelemetry-api
+
+    - name: Ensure scipy is installed
+      command: python3 -m pip install --break-system-packages scipy
+
+    - name: Ensure GitPython is installed
+      command: python3 -m pip install --break-system-packages GitPython
+
+    - name: Run training script
+      command: python3 src/training/train_model.py
+      args:
+        chdir: /home/ubuntu/mlops-devops-prix

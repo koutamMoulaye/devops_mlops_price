@@ -1,26 +1,13 @@
-import os
 from flask import Flask, request, jsonify
 import mlflow.pyfunc
 import pandas as pd
+from pathlib import Path
 
 app = Flask(__name__)
 
-import pathlib
-
-# Chemin absolu (au format propre pour URI)
-# model_path = pathlib.Path(
-#     "C:/Users/mlkou/Desktop/devopsMops/src/training/mlruns/972736457168744898/models/m-4162962d358a469485e363fb4ff86cbd/artifacts"
-# ).as_posix()
-
-# model = mlflow.pyfunc.load_model(model_uri=f"file:///{model_path}")
-
-import os
-
-model_path = os.path.abspath("mlruns/model")
-model = mlflow.pyfunc.load_model(model_uri=f"file://{model_path}")
-
-
-
+# Charge le modèle depuis le chemin local dans l'image Docker
+model_path = Path("mlruns/model").resolve().as_uri()
+model = mlflow.pyfunc.load_model(model_path)
 
 @app.route("/")
 def home():
@@ -31,7 +18,6 @@ def predict():
     data = request.get_json()
     if not data:
         return jsonify({"error": "No data provided"}), 400
-
     try:
         df = pd.DataFrame([data])
         prediction = model.predict(df)

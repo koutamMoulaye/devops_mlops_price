@@ -19,16 +19,16 @@
 
     - name: Clone project repository
       git:
-        repo: "https://github.com/<votre-repo>/mlops-devops-prix.git"
+        repo: "https://github.com/koutamMoulaye/devops_mlops_price"
         dest: /home/ubuntu/mlops-devops-prix
         version: main
 
     - name: Build Docker image
-      command:
+      command: docker build -f docker/api.Dockerfile -t houseprice-api .
+      args:
         chdir: /home/ubuntu/mlops-devops-prix
-        cmd: docker build -f docker/api.Dockerfile -t houseprice-api .
 
     - name: Run Docker container
-      command:
+      command: docker run -d -p 5001:5001 --name api houseprice-api
+      args:
         chdir: /home/ubuntu/mlops-devops-prix
-        cmd: docker run -d -p 5001:5001 --name api houseprice-api

@@ -1,5 +1,5 @@
 [api]
-3.82.241.221 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/labuser.pem
+54.86.118.253 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/labuser.pem
 
 [training]
-44.201.122.167 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/labuser.pem
+54.147.56.88 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/labuser.pem
