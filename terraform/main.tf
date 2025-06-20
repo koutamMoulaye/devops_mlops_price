@@ -4,32 +4,13 @@ provider "aws" {
   profile                  = "awslearnerlab"
 }
 
-resource "aws_instance" "api" {
-  ami           = "ami-02f7c3a0c32f3f59e"
-  key_name      = "vockey"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "mlops-api"
-  }
-
-  vpc_security_group_ids = [aws_security_group.allow_ssh_http.id]
-}
-
-resource "aws_instance" "training" {
-  ami           = "ami-02f7c3a0c32f3f59e"
-  key_name      = "vockey"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "mlops-training"
-  }
-
-  vpc_security_group_ids = [aws_security_group.allow_ssh_http.id]
+# Suffixe aléatoire pour éviter les doublons de nom de groupe de sécurité
+resource "random_id" "suffix" {
+  byte_length = 4
 }
 
 resource "aws_security_group" "allow_ssh_http" {
-  name        = "allow_ssh_http"
+  name        = "allow_ssh_http-${random_id.suffix.hex}"
   description = "Allow SSH and HTTP"
 
   ingress {
@@ -52,4 +33,28 @@ resource "aws_security_group" "allow_ssh_http" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+resource "aws_instance" "api" {
+  ami           = "ami-02f7c3a0c32f3f59e"
+  key_name      = "vockey"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "mlops-api"
+  }
+
+  vpc_security_group_ids = [aws_security_group.allow_ssh_http.id]
+}
+
+resource "aws_instance" "training" {
+  ami           = "ami-02f7c3a0c32f3f59e"
+  key_name      = "vockey"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "mlops-training"
+  }
+
+  vpc_security_group_ids = [aws_security_group.allow_ssh_http.id]
 }

@@ -96,7 +96,7 @@ Invoke-RestMethod -Uri http://<API_PUBLIC_IP>:5001/predict `
 ```
 
 ```bash
-curl -X POST http://<API_PUBLIC_IP>:5001/predict \
+curl -X POST http://54.91.95.144:5001/predict \
      -H "Content-Type: application/json" \
      -d @data/processed/sample_input.json
 ```
@@ -146,4 +146,42 @@ devops_mlops_price/
 ├── image-1.png
 ├── image-2.png
 └── README.md
+```
+
+## 🛠 Dépannage courant
+
+### Erreur : `UNPROTECTED PRIVATE KEY FILE!`
+
+Si vous obtenez cette erreur lors de l'exécution d'Ansible :
+
+```
+WARNING: UNPROTECTED PRIVATE KEY FILE!
+Permissions 0777 for 'vockey.pem' are too open.
+This private key will be ignored.
+```
+
+Cela signifie que les permissions de votre fichier `.pem` sont trop permissives.
+Copier la clé dans un répertoire Linux natif (pas /mnt/c/) :
+Corrigez-les avec cette commande :
+
+```bash
+mkdir -p ~/.ssh
+cp /mnt/c/Users/<votre_user>/Desktop/devopsMops/_credentials/vockey.pem ~/.ssh/vockey.pem
+chmod 400 ~/.ssh/vockey.pem
+```
+
+Modifier ansible/hosts pour utiliser le bon chemin :
+```hosts file
+[api]
+<ip_api> ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/vockey.pem
+
+[training]
+<ip_training> ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/vockey.pem
+
+```
+Relancer Ansible :
+```
+cd ansible
+ansible-playbook -i hosts playbooks/setup_api.yml
+
 ```
