@@ -1,5 +1,10 @@
+
 flask
 mlflow
 pandas
-scikit-learn
 xgboost
+scikit-learn
+gitpython
+opentelemetry-sdk
+opentelemetry-api
+scipy

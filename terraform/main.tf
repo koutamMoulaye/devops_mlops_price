@@ -13,7 +13,6 @@ resource "aws_instance" "api" {
     Name = "mlops-api"
   }
 
-
   vpc_security_group_ids = [aws_security_group.allow_ssh_http.id]
 }
 
