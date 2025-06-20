@@ -5,7 +5,6 @@ import xgboost as xgb
 from sklearn.metrics import mean_squared_error
 from math import sqrt
 import os
-import shutil
 
 # Définir les chemins vers les données
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
@@ -30,15 +29,10 @@ with mlflow.start_run():
     rmse = sqrt(mean_squared_error(y, preds))
     mlflow.log_metric("rmse", rmse)
 
-    # ✅ Supprimer le dossier modèle s’il existe déjà
-    model_dir = "model"
-    if os.path.exists(model_dir):
-        shutil.rmtree(model_dir)
-
-    # ✅ Sauvegarde locale
+    # ✅ Sauvegarde locale, écrase si besoin
     mlflow.xgboost.save_model(
         model,
-        path=model_dir,
+        path="model",
         input_example=input_example
     )
 
