@@ -87,6 +87,7 @@ ansible-playbook -i hosts playbooks/setup_ml.yml
 ## Utilisation de l'API
 
 Envoyez une requête POST vers l'API Flask avec un JSON d'exemple comme `sample_input.json`.
+rendez vous d'avord à la racine du projet avant de tester
 
 ```powershell
 Invoke-RestMethod -Uri http://<API_PUBLIC_IP>:5001/predict `
