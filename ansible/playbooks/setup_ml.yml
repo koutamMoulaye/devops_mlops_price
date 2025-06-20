@@ -1,8 +1,9 @@
 - name: Setup ML Training instance
   hosts: training
   become: true
+
   tasks:
-    - name: Update APT and install dependencies
+    - name: Update APT and install system dependencies
       apt:
         update_cache: yes
         name:
@@ -15,25 +16,39 @@
         repo: "https://github.com/koutamMoulaye/devops_mlops_price"
         dest: /home/ubuntu/mlops-devops-prix
         version: main
+        force: true
 
-    - name: Install Python requirements (handle system packages correctly)
+    - name: Install Python requirements with system override
       command: python3 -m pip install --break-system-packages --no-deps --ignore-installed -r requirements.txt
       args:
         chdir: /home/ubuntu/mlops-devops-prix
 
-    - name: Ensure pydantic is installed
-      command: python3 -m pip install --break-system-packages pydantic
+    - name: Ensure required pip packages installed individually
+      command: python3 -m pip install --break-system-packages {{ item }}
+      loop:
+        - pandas
+        - pydantic
+        - opentelemetry-sdk
+        - scipy
 
-    - name: Ensure opentelemetry is installed
-      command: python3 -m pip install --break-system-packages opentelemetry-sdk opentelemetry-api
+    - name: Create mlruns directory
+      file:
+        path: /home/ubuntu/mlops-devops-prix/mlruns
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: "0755"
 
-    - name: Ensure scipy is installed
-      command: python3 -m pip install --break-system-packages scipy
-
-    - name: Ensure GitPython is installed
-      command: python3 -m pip install --break-system-packages GitPython
+    - name: Create model directory if not exists
+      file:
+        path: /home/ubuntu/mlops-devops-prix/model
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: "0755"
 
     - name: Run training script
+      become_user: ubuntu
       command: python3 src/training/train_model.py
       args:
         chdir: /home/ubuntu/mlops-devops-prix
