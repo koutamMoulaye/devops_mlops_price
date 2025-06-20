@@ -1,3 +1,4 @@
+
 # MLOps House Price Prediction Project
 
 ## Objectif
@@ -5,17 +6,12 @@
 Ce projet permet de déployer une API Flask pour la prédiction de prix de maisons via un modèle XGBoost, avec infrastructure provisionnée automatiquement sur AWS via Terraform, et une exécution des tâches de configuration par Ansible.
 
 ---
----
-le mlflow
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
----
+
 ## 🌐 Prérequis
 
 ### 1. Clés AWS
 
-* crée le  fichier `_credentials/aws_learner_lab_credentials`
+* Créez le fichier `_credentials/aws_learner_lab_credentials`
 * Exemple :
 
   ```ini
@@ -44,6 +40,7 @@ Installez les outils suivants :
 
 ---
 
+## 🚀 Étapes de déploiement
 
 ### 1. Clonez le projet
 
@@ -98,15 +95,33 @@ Invoke-RestMethod -Uri http://<API_PUBLIC_IP>:5001/predict `
   -InFile ".\data\processed\sample_input.json"
 ```
 
-```ubuntu ou kali ou powershell
-
-curl -X POST http://<IP_API>:5001/predict \
+```bash
+curl -X POST http://<API_PUBLIC_IP>:5001/predict \
      -H "Content-Type: application/json" \
      -d @data/processed/sample_input.json
+```
 
 ---
 
-## Arborescence Simplifiée
+## 📸 Visualisations MLflow
+
+Aperçus des résultats et de l'entraînement :
+
+<p align="center">
+  <img src="image.png" alt="API MLflow View" width="600"/>
+</p>
+
+<p align="center">
+  <img src="image-1.png" alt="MLflow Run Detail" width="600"/>
+</p>
+
+<p align="center">
+  <img src="image-2.png" alt="Prediction Logged" width="600"/>
+</p>
+
+---
+
+## 📁 Arborescence Simplifiée
 
 ```
 devops_mlops_price/
@@ -122,7 +137,13 @@ devops_mlops_price/
 ├── src/
 │   ├── prediction/app.py
 │   └── training/train_model.py
+├── data/
+│   └── processed/sample_input.json
 ├── _credentials/
 │   ├── aws_learner_lab_credentials
 │   └── labuser.pem
+├── image.png
+├── image-1.png
+├── image-2.png
+└── README.md
 ```
