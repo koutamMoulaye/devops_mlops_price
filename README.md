@@ -185,3 +185,21 @@ cd ansible
 ansible-playbook -i hosts playbooks/setup_api.yml
 
 ```
+
+## Utilisation de l'API
+
+Envoyez une requête POST vers l'API Flask avec un JSON d'exemple comme `sample_input.json`.
+rendez vous d'avord à la racine du projet avant de tester
+
+```powershell
+Invoke-RestMethod -Uri http://<API_PUBLIC_IP>:5001/predict `
+  -Method Post `
+  -ContentType "application/json" `
+  -InFile ".\data\processed\sample_input.json"
+```
+
+```bash
+curl -X POST http://54.91.95.144:5001/predict \
+     -H "Content-Type: application/json" \
+     -d @data/processed/sample_input.json
+```
