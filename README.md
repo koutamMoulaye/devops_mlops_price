@@ -5,7 +5,12 @@
 Ce projet permet de déployer une API Flask pour la prédiction de prix de maisons via un modèle XGBoost, avec infrastructure provisionnée automatiquement sur AWS via Terraform, et une exécution des tâches de configuration par Ansible.
 
 ---
-
+---
+le mlflow
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+---
 ## 🌐 Prérequis
 
 ### 1. Clés AWS
