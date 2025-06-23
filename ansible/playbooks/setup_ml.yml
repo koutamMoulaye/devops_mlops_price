@@ -8,6 +8,7 @@
         update_cache: yes
         name:
           - python3-pip
+          - python3-venv  
           - git
         state: present
 
@@ -18,18 +19,19 @@
         version: main
         force: true
 
-    - name: Install Python requirements with system override
-      command: python3 -m pip install --break-system-packages --no-deps --ignore-installed -r requirements.txt
+    - name: Create Python virtual environment
+      command: python3 -m venv /home/ubuntu/venv
       args:
-        chdir: /home/ubuntu/mlops-devops-prix
+        creates: /home/ubuntu/venv/bin/activate
 
-    - name: Ensure required pip packages installed individually
-      command: python3 -m pip install --break-system-packages {{ item }}
-      loop:
-        - pandas
-        - pydantic
-        - opentelemetry-sdk
-        - scipy
+    - name: Upgrade pip in virtualenv
+      command: /home/ubuntu/venv/bin/pip install --upgrade pip
+
+    - name: Install Python requirements in virtualenv
+      command: /home/ubuntu/venv/bin/pip install -r /home/ubuntu/mlops-devops-prix/requirements.txt
+
+    - name: Install extra pip packages for MLflow in virtualenv
+      command: /home/ubuntu/venv/bin/pip install mlflow[extras] protobuf packaging
 
     - name: Create mlruns directory
       file:
@@ -47,8 +49,7 @@
         group: ubuntu
         mode: "0755"
 
-    - name: Run training script
+    - name: Run training script inside virtualenv
       become_user: ubuntu
-      command: python3 src/training/train_model.py
-      args:
-        chdir: /home/ubuntu/mlops-devops-prix
+      command: /home/ubuntu/venv/bin/python /home/ubuntu/mlops-devops-prix/src/training/train_model.py
+ 
